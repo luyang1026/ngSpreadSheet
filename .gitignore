@@ -1,2 +1,4 @@
 /node_modules
 /*Store
+./src/**/*.js
+./src/**/*.map

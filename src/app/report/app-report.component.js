@@ -21,25 +21,23 @@ var ReportComponent = (function () {
         };
         this.showRowOutline = true;
         this.showColumnOutline = true;
-        this.rowOutlineInfo = [{ index: 1, count: 4 }, { index: 6, count: 4 }];
-        this.columnOutlineInfo = [{ index: 0, count: 4 }];
         this.colHeader = ['类别', '项目', '金额'];
+        this.grayAreaBackColor = "#444";
         this.formatter = "#.00";
-        // console.log(this.myGC.cellType)
-        console.log(myGC_service_1.MyGC.cellType);
     }
     ReportComponent.prototype.workbookInit = function (ev) {
         var _this = this;
         this.spread = ev.spread;
         this.sheet = this.spread.getActiveSheet();
-        for (var i = 0; i < this.colHeader.length; ++i) {
-            this.setCell(0, i, this.colHeader[i], GC.Spread.Sheets.SheetArea.colHeader);
+        for (var i_1 = 0, colHeader = GC.Spread.Sheets.SheetArea.colHeader; i_1 < this.colHeader.length; ++i_1) {
+            this.setCell(0, i_1, this.colHeader[i_1], colHeader);
         }
         for (var i = 0; i < this.data.length; ++i) {
             this.setCell(i, 1, this.data[i].content);
             this.addComment(i, 1, this.data[i].comment);
             if (this.data[i].plus) {
-                this.addPlus(i, 2);
+                this.testCostom(i, 2);
+                // this.addPlus(i,2);break;
                 this.vhAlignCenter(this.sheet.getCell(i, 2));
             }
         }
@@ -68,11 +66,12 @@ var ReportComponent = (function () {
         }
     };
     ReportComponent.prototype.addComment = function (row, col, comment) {
-        this.sheet.comments.add(row, col, comment)
+        var r = this.sheet.comments.add(row, col, comment)
             .lockText(false)
             .locked(false)
             .dynamicMove(true)
-            .dynamicSize(true);
+            .dynamicSize(true)
+            .location(-500);
     };
     ReportComponent.prototype.addPlus = function (row, col) {
         var btn = new GC.Spread.Sheets.CellTypes.Button();
@@ -82,7 +81,9 @@ var ReportComponent = (function () {
         btn.marginTop(5);
         this.sheet.getCell(row, col).cellType(btn);
     };
-    ReportComponent.prototype.testCostom = function () {
+    ReportComponent.prototype.testCostom = function (row, col) {
+        var btn = new myGC_service_1.MyCellType();
+        this.sheet.getCell(row, col).cellType(btn);
     };
     ReportComponent.prototype.ngOnInit = function () {
         this.data = this.dataservice.report();

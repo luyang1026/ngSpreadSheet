@@ -47,7 +47,7 @@ AppModule = __decorate([
             app_reporttow_component_1.ReporttwoComponent,
             app_component_toNumberPipe_1.ToNumberPipe,
         ],
-        providers: [app_data_service_1.DataService, report1_service_1.ReportDataService, myGC_service_1.MyGC],
+        providers: [app_data_service_1.DataService, report1_service_1.ReportDataService, myGC_service_1.MyCellType],
         bootstrap: [app_component_1.AppComponent]
     })
 ], AppModule);

@@ -18,7 +18,7 @@ import {ReporttwoComponent} from "./reporttow/app-reporttow.component";
 import {DataService} from "./app-data.service";
 
 import {ReportDataService} from "./service/report1.service";
-import { MyGC } from "./service/myGC.service"
+import { MyCellType } from "./service/myGC.service"
 
 
 @NgModule({
@@ -37,7 +37,7 @@ import { MyGC } from "./service/myGC.service"
         ReporttwoComponent,
         ToNumberPipe,        
     ],
-    providers: [DataService,ReportDataService,MyGC],
+    providers: [DataService,ReportDataService,MyCellType],
     bootstrap: [AppComponent]
 })
 export class AppModule {

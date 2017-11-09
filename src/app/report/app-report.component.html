@@ -1,11 +1,15 @@
 <h3>A100000中华人民共和国企业所得税年度纳税申报表（A类）</h3>
 
 <div>
-    <gc-spread-sheets (workbookInitialized)="workbookInit($event)" [tabStripVisible]="false">
+    <gc-spread-sheets
+     (workbookInitialized)="workbookInit($event)"
+     [tabStripVisible]="false"
+     [grayAreaBackColor]="grayAreaBackColor"
+    >
         <gc-worksheet>
             <gc-column width=40 dataField="类别" wordWrap=true></gc-column>
             <gc-column dataField="项目" isProtected="true"></gc-column>
-            <gc-column width=40 dataField="金额" [formatter]="formatter"></gc-column>
+            <gc-column width=400 dataField="金额" [formatter]="formatter"></gc-column>
         </gc-worksheet>
     </gc-spread-sheets>
 </div>
