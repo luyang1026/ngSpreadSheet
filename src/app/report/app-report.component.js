@@ -36,7 +36,7 @@ var ReportComponent = (function () {
             this.setCell(i, 1, this.data[i].content);
             this.addComment(i, 1, this.data[i].comment);
             if (this.data[i].plus) {
-                this.testCostom(i, 2);
+                this.testCostom(i, 2); //debugger;
                 // this.addPlus(i,2);break;
                 this.vhAlignCenter(this.sheet.getCell(i, 2));
             }

@@ -2,7 +2,6 @@
 import {Component,OnInit} from "@angular/core"
 import { ReportDataService } from "../service/report1.service";
 import { MyCellType } from "../service/myGC.service";
-import { WorksheetComponent } from "../lib/gc.spread.sheets.angular2.10.2.0";
 @Component({
     templateUrl: './app-report.component.html'
 })
@@ -20,6 +19,11 @@ export class ReportComponent{
     sheet: any;
     formatter: string;
     grayAreaBackColor = "#444";
+    constructor(
+        private dataservice: ReportDataService,
+    ){
+        this.formatter = "#.00"
+    }
     workbookInit(ev:any){
         this.spread = ev.spread
         this.sheet = this.spread.getActiveSheet()
@@ -31,7 +35,7 @@ export class ReportComponent{
             this.setCell(i,1,this.data[i].content)
             this.addComment(i,1,this.data[i].comment)
             if(this.data[i].plus){
-                this.testCostom(i,2)
+                this.testCostom(i,2);//debugger;
                 // this.addPlus(i,2);break;
                 this.vhAlignCenter(this.sheet.getCell(i,2))
             }
@@ -78,11 +82,6 @@ export class ReportComponent{
     testCostom(row:number,col:number):void{
         var btn = new MyCellType();
         this.sheet.getCell(row,col).cellType(btn);
-    }
-    constructor(
-        private dataservice: ReportDataService,
-    ){
-        this.formatter = "#.00"
     }
     ngOnInit():void{
         this.data = this.dataservice.report();
