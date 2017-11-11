@@ -48,6 +48,9 @@ var MyCellType = (function (_super) {
         ctx.drawImage(this.img, this.x + this.w - this.picW, this.y + this.circleOuterPadding);
         ctx.closePath();
         ctx.restore();
+        if (value) {
+            _super.prototype.paint.apply(this, [ctx, value.value, x, y, w, h, style, context]);
+        }
     };
     MyCellType.prototype.getHitInfo = function (x, y, cellStyle, cellRect, context) {
         var ltx = cellRect.x + cellRect.width - this.picW - this.padding[1];
@@ -70,19 +73,41 @@ var MyCellType = (function (_super) {
     MyCellType.prototype.processMouseUp = function (hitInfo) {
         var sheet = hitInfo.sheet;
         if (sheet && hitInfo.isReservedLocation) {
+            console.log('clicked');
             return true;
         }
         return false;
     };
     MyCellType.prototype.createEditorElement = function () {
-        var divE = document.createElement('div');
-        console.log($);
-        var div = $(divE);
-        div.css('background', 'red');
-        div.css('overflow', 'hidden');
-        div.style.background = 'red';
-        div.append($('<input type="text"/>'));
-        return divE;
+        var div = document.createElement('div');
+        div.setAttribute("gcUIElement", "gcEditingInput");
+        div.className = 'my-cell-type-plus';
+        // div.css('overflow','hidden')
+        // div.style.background = 'red';
+        var input = document.createElement('input');
+        div.appendChild(input);
+        return div;
+    };
+    MyCellType.prototype.updateEditor = function (editorCxt) {
+        if (editorCxt) {
+            var input = editorCxt.children[0];
+            input.focus();
+            input.style.outline = 'none';
+            input.style.border = 'none';
+            input.style.padding = this.padding[0] + "px " + this.padding[1] + "px";
+        }
+    };
+    MyCellType.prototype.getEditorValue = function (editorContext) {
+        var input = editorContext.children[0];
+        return {
+            value: input.value
+        };
+    };
+    MyCellType.prototype.setEditorValue = function (editorContext, value) {
+        var input = editorContext.children[0];
+        if (value) {
+            input.value = value.value;
+        }
     };
     return MyCellType;
 }(GC.Spread.Sheets.CellTypes.Base));

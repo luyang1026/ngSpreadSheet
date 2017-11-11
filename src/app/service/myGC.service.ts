@@ -20,6 +20,7 @@ export class MyCellType extends GC.Spread.Sheets.CellTypes.Base{
      this.img = img;
    }
    paint(ctx:any, value:any, x:number, y:number, w:number, h:number, style:any, context:any){
+      
      if(!ctx)return;
      let p = this.padding;
      this.x = x+p[1];
@@ -38,6 +39,9 @@ export class MyCellType extends GC.Spread.Sheets.CellTypes.Base{
 
      ctx.closePath()
      ctx.restore();
+     if (value) {
+        super.paint.apply(this, [ctx, value.value, x, y, w, h, style, context]);
+      }
    }
    getHitInfo(x:number, y:number, cellStyle:any, cellRect:any, context:any):any{
      let ltx = cellRect.x+cellRect.width-this.picW-this.padding[1];
@@ -60,19 +64,41 @@ export class MyCellType extends GC.Spread.Sheets.CellTypes.Base{
    processMouseUp(hitInfo:any){
      let sheet = hitInfo.sheet;
      if(sheet&&hitInfo.isReservedLocation){
+       console.log('clicked')
        return true;
        //click plus button
      }
      return false
    }
    createEditorElement(){
-     var divE = document.createElement('div')
-     console.log($)
-     var div = $(divE)
-     div.css('background','red')
-     div.css('overflow','hidden')
-     div.style.background = 'red';
-     div.append($('<input type="text"/>'))
-     return divE;
+     var div = document.createElement('div')
+     div.setAttribute("gcUIElement", "gcEditingInput")
+     div.className = 'my-cell-type-plus'
+     // div.css('overflow','hidden')
+     // div.style.background = 'red';
+     var input = document.createElement('input')
+     div.appendChild(input)
+     return div;
+   }
+   updateEditor(editorCxt:any){
+     if(editorCxt){
+       var input = editorCxt.children[0]
+       input.focus()
+       input.style.outline = 'none'
+       input.style.border='none'
+       input.style.padding = `${this.padding[0]}px ${this.padding[1]}px`
+     }
+   }
+   getEditorValue(editorContext:any){//triggers on cell's blur state
+     var input = editorContext.children[0]
+     return {
+       value:input.value
+     }
+   }
+   setEditorValue(editorContext:any,value:any){//trigger on cell is being active
+     var input = editorContext.children[0]
+     if(value){
+       input.value = value.value;
+     }
    }
 }
