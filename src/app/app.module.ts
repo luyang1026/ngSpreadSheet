@@ -13,16 +13,19 @@ import {ToNumberPipe} from "./app.component.toNumberPipe";
 import {StyleComponent} from "./style/app-style.component";
 import {OutlineComponent} from "./outline/app-outline.component";
 import {ReportComponent} from "./report/app-report.component";
-import {ReportoneComponent} from "./reportone/app-reportone.component";
+import {ViewChildComp,Pane} from "./playground/playground.component";
 import {ReporttwoComponent} from "./reporttow/app-reporttow.component";
+import {ReportTestComponent} from "./test/spread_test.component";
 import {DataService} from "./app-data.service";
-
 import {ReportDataService} from "./service/report1.service";
-import { MyCellType } from "./service/myGC.service"
-
+import { CustomCellType } from "./service/myGC.service"
+import { DxPopupModule, DxButtonModule, DxTemplateModule,DxTreeViewModule,DxTreeListModule } from 'devextreme-angular';
 
 @NgModule({
-    imports: [BrowserModule, AppRoutingModule, SpreadSheetsModule, FormsModule],
+    imports: [
+        BrowserModule, AppRoutingModule, SpreadSheetsModule, FormsModule,DxPopupModule, DxButtonModule, DxTemplateModule,
+        DxTreeViewModule,DxTreeListModule
+    ],
     declarations: [
         AppComponent,
         QuickStartComponent,
@@ -33,11 +36,13 @@ import { MyCellType } from "./service/myGC.service"
         StyleComponent,
         OutlineComponent,
         ReportComponent,
-        ReportoneComponent,
+        ViewChildComp,
+        Pane,
         ReporttwoComponent,
-        ToNumberPipe,        
+        ToNumberPipe,
+        ReportTestComponent
     ],
-    providers: [DataService,ReportDataService,MyCellType],
+    providers: [DataService,ReportDataService,CustomCellType],
     bootstrap: [AppComponent]
 })
 export class AppModule {

@@ -29,6 +29,7 @@ var ReportComponent = (function () {
         var _this = this;
         this.spread = ev.spread;
         this.sheet = this.spread.getActiveSheet();
+        this.spread.suspendPaint();
         for (var i_1 = 0, colHeader = GC.Spread.Sheets.SheetArea.colHeader; i_1 < this.colHeader.length; ++i_1) {
             this.setCell(0, i_1, this.colHeader[i_1], colHeader);
         }
@@ -50,6 +51,7 @@ var ReportComponent = (function () {
             _this.vhAlignCenter(_this.sheet.getCell(pre.span, 0));
             return { span: pre.span + cur.span };
         }, { span: 0 });
+        this.spread.resumePaint();
     };
     ReportComponent.prototype.setCell = function (row, col, value, target) {
         this.sheet.setValue(row, col, value, target);
@@ -82,7 +84,9 @@ var ReportComponent = (function () {
         this.sheet.getCell(row, col).cellType(btn);
     };
     ReportComponent.prototype.testCostom = function (row, col) {
-        var btn = new myGC_service_1.MyCellType();
+        var btn = new myGC_service_1.CustomCellType();
+        btn.on(function (data) {
+        });
         this.sheet.getCell(row, col).cellType(btn);
     };
     ReportComponent.prototype.ngOnInit = function () {

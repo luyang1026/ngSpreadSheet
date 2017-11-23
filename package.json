@@ -23,6 +23,8 @@
     "@angular/router": "~4.0.0",
     "angular-in-memory-web-api": "~0.3.0",
     "core-js": "^2.4.1",
+    "devextreme": "^17.2.3",
+    "devextreme-angular": "^17.2.3",
     "jquery": "^3.2.1",
     "rxjs": "5.0.1",
     "systemjs": "0.19.40",

@@ -22,7 +22,10 @@
       '@angular/http': 'npm:@angular/http/bundles/http.umd.js',
       '@angular/router': 'npm:@angular/router/bundles/router.umd.js',
       '@angular/forms': 'npm:@angular/forms/bundles/forms.umd.js',
-
+       // devextreme & devextreme deps
+      'devextreme': 'npm:devextreme',                   // <== add this line
+      'jszip': 'npm:jszip/dist/jszip.min.js',           // <== add this line
+      'devextreme-angular': 'npm:devextreme-angular',   // <== add this line
       // other libraries
       'rxjs':                      'npm:rxjs',
       'angular-in-memory-web-api': 'npm:angular-in-memory-web-api/bundles/in-memory-web-api.umd.js',
@@ -40,7 +43,9 @@
       },
       rxjs: {
         defaultExtension: 'js'
-      }
+      },
+      'devextreme-angular':{ main: 'index.js', defaultExtension: 'js' }, // <== add this line
+      'devextreme':{ defaultExtension: 'js' }                    // <== add this line
     }
   });
 })(this);

@@ -8,12 +8,13 @@ import {DataBindComponent} from "../dataBind/app-dataBind.component";
 import {StyleComponent} from "../style/app-style.component";
 import {OutlineComponent} from "../outline/app-outline.component";
 import {ReportComponent} from "../report/app-report.component";
-import {ReportoneComponent} from "../reportone/app-reportone.component";
+import {ViewChildComp} from "../playground/playground.component";
 import {ReporttwoComponent} from "../reporttow/app-reporttow.component";
+import {ReportTestComponent} from '../test/spread_test.component';
 
 
 const routes: Routes = [
-    {path: '', redirectTo: '/report', pathMatch: 'full'},
+    {path: '', redirectTo: '/reporttest', pathMatch: 'full'},
     {path: 'quick-start', component: QuickStartComponent},
     {path: 'gc-spread-sheets', component: SpreadSheetsComponent},
     {path: 'gc-worksheet', component: WorksheetComponent},
@@ -22,8 +23,9 @@ const routes: Routes = [
     {path: 'style', component: StyleComponent},
     {path: 'outline', component: OutlineComponent},
     {path: 'report', component: ReportComponent},
-    {path: 'reportone', component: ReportoneComponent},
+    {path: 'playground', component: ViewChildComp},
     {path: 'reporttwo', component: ReporttwoComponent},
+    {path: 'reporttest', component: ReportTestComponent}
 ];
 
 @NgModule({

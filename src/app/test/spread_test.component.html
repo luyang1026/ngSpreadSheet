@@ -1,0 +1,36 @@
+<div>
+    <gc-spread-sheets
+      [hostStyle]="hostStyle"
+     (workbookInitialized)="workbookInit($event)"
+    >
+    </gc-spread-sheets>
+    <dx-popup
+        class="popup"
+        width="50%"
+        [showTitle]="true"
+        [title]="title"
+        [dragEnabled]="true"
+        [fullScreen]="false"
+        [closeOnOutsideClick]="true"
+        [(visible)]="popupVisible">
+        <div *dxTemplate="let data of 'content'">
+            <dx-tree-list
+                [autoExpandAll]="true"
+                [showRowLines]="false"
+                dataStructure="tree"
+                itemsExpr="children_json"
+                keyExpr="K_KMNM"
+                [dataSource]="balanceList"
+            >
+                <dxo-selection mode="multiple"></dxo-selection>
+                <dxi-column dataField="K_KMBM" caption="K_KMBM"></dxi-column>
+                <dxi-column dataField="K_KMMC" caption="K_KMMC"></dxi-column>
+                <dxi-column dataField="BNLJFSE_DF" caption="BNLJFSE_DF"></dxi-column>
+            </dx-tree-list>
+            <div style="text-align:right;margin-top:10px;">
+                <dx-button text="取消" type="default" (click)="cancel()"></dx-button>
+                <dx-button text="保存" type="success"></dx-button>
+            </div>
+        </div>
+    </dx-popup>
+</div>

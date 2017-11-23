@@ -20,11 +20,13 @@ var app_component_toNumberPipe_1 = require("./app.component.toNumberPipe");
 var app_style_component_1 = require("./style/app-style.component");
 var app_outline_component_1 = require("./outline/app-outline.component");
 var app_report_component_1 = require("./report/app-report.component");
-var app_reportone_component_1 = require("./reportone/app-reportone.component");
+var playground_component_1 = require("./playground/playground.component");
 var app_reporttow_component_1 = require("./reporttow/app-reporttow.component");
+var spread_test_component_1 = require("./test/spread_test.component");
 var app_data_service_1 = require("./app-data.service");
 var report1_service_1 = require("./service/report1.service");
 var myGC_service_1 = require("./service/myGC.service");
+var devextreme_angular_1 = require("devextreme-angular");
 var AppModule = (function () {
     function AppModule() {
     }
@@ -32,7 +34,10 @@ var AppModule = (function () {
 }());
 AppModule = __decorate([
     core_1.NgModule({
-        imports: [platform_browser_1.BrowserModule, app_routing_module_1.AppRoutingModule, gc_spread_sheets_angular2_10_2_0_1.SpreadSheetsModule, forms_1.FormsModule],
+        imports: [
+            platform_browser_1.BrowserModule, app_routing_module_1.AppRoutingModule, gc_spread_sheets_angular2_10_2_0_1.SpreadSheetsModule, forms_1.FormsModule, devextreme_angular_1.DxPopupModule, devextreme_angular_1.DxButtonModule, devextreme_angular_1.DxTemplateModule,
+            devextreme_angular_1.DxTreeViewModule, devextreme_angular_1.DxTreeListModule
+        ],
         declarations: [
             app_component_1.AppComponent,
             app_quickStart_component_1.QuickStartComponent,
@@ -43,11 +48,13 @@ AppModule = __decorate([
             app_style_component_1.StyleComponent,
             app_outline_component_1.OutlineComponent,
             app_report_component_1.ReportComponent,
-            app_reportone_component_1.ReportoneComponent,
+            playground_component_1.ViewChildComp,
+            playground_component_1.Pane,
             app_reporttow_component_1.ReporttwoComponent,
             app_component_toNumberPipe_1.ToNumberPipe,
+            spread_test_component_1.ReportTestComponent
         ],
-        providers: [app_data_service_1.DataService, report1_service_1.ReportDataService, myGC_service_1.MyCellType],
+        providers: [app_data_service_1.DataService, report1_service_1.ReportDataService, myGC_service_1.CustomCellType],
         bootstrap: [app_component_1.AppComponent]
     })
 ], AppModule);

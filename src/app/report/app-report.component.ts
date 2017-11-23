@@ -1,7 +1,7 @@
 //<reference path="../lib/GC.Spread.Sheets.d.ts"/>
 import {Component,OnInit} from "@angular/core"
 import { ReportDataService } from "../service/report1.service";
-import { MyCellType } from "../service/myGC.service";
+import { CustomCellType } from "../service/myGC.service";
 @Component({
     templateUrl: './app-report.component.html'
 })
@@ -27,7 +27,7 @@ export class ReportComponent{
     workbookInit(ev:any){
         this.spread = ev.spread
         this.sheet = this.spread.getActiveSheet()
-
+        this.spread.suspendPaint();
         for (let i = 0,colHeader=GC.Spread.Sheets.SheetArea.colHeader; i < this.colHeader.length; ++i) {
            this.setCell(0,i,this.colHeader[i],colHeader)
         }
@@ -49,6 +49,7 @@ export class ReportComponent{
             this.vhAlignCenter(this.sheet.getCell(pre.span,0))
             return {span:pre.span+cur.span}
         },{span:0})
+        this.spread.resumePaint();
     }
     setCell(row:number,col:number,value:string,target?:any):void{
         this.sheet.setValue(row,col,value,target)
@@ -80,7 +81,9 @@ export class ReportComponent{
         this.sheet.getCell(row,col).cellType(btn);
     }
     testCostom(row:number,col:number):void{
-        var btn = new MyCellType();
+        var btn = new CustomCellType();
+        btn.on((data)=>{
+        })
         this.sheet.getCell(row,col).cellType(btn);
     }
     ngOnInit():void{

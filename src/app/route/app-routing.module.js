@@ -15,10 +15,11 @@ var app_dataBind_component_1 = require("../dataBind/app-dataBind.component");
 var app_style_component_1 = require("../style/app-style.component");
 var app_outline_component_1 = require("../outline/app-outline.component");
 var app_report_component_1 = require("../report/app-report.component");
-var app_reportone_component_1 = require("../reportone/app-reportone.component");
+var playground_component_1 = require("../playground/playground.component");
 var app_reporttow_component_1 = require("../reporttow/app-reporttow.component");
+var spread_test_component_1 = require("../test/spread_test.component");
 var routes = [
-    { path: '', redirectTo: '/report', pathMatch: 'full' },
+    { path: '', redirectTo: '/reporttest', pathMatch: 'full' },
     { path: 'quick-start', component: app_quickStart_component_1.QuickStartComponent },
     { path: 'gc-spread-sheets', component: app_spreadSheets_component_1.SpreadSheetsComponent },
     { path: 'gc-worksheet', component: app_worksheet_component_1.WorksheetComponent },
@@ -27,8 +28,9 @@ var routes = [
     { path: 'style', component: app_style_component_1.StyleComponent },
     { path: 'outline', component: app_outline_component_1.OutlineComponent },
     { path: 'report', component: app_report_component_1.ReportComponent },
-    { path: 'reportone', component: app_reportone_component_1.ReportoneComponent },
+    { path: 'playground', component: playground_component_1.ViewChildComp },
     { path: 'reporttwo', component: app_reporttow_component_1.ReporttwoComponent },
+    { path: 'reporttest', component: spread_test_component_1.ReportTestComponent }
 ];
 var AppRoutingModule = (function () {
     function AppRoutingModule() {
